@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim Jason G. Gonzales - Frontend Developer</title>
+
+    <!-- SEO & Social Sharing Meta Tags -->
+    <meta name="description" content="A modern, animated, and responsive personal portfolio website to showcase works, experience, and skills, built with React and Tailwind CSS.">
+    <meta property="og:title" content="Tim Jason G. Gonzales - Portfolio">
+    <meta property="og:description" content="Transforming ideas into responsive and performant web applications that engage users and drive results.">
+    <!-- TODO: Make sure this path matches your profile picture filename in constants.ts -->
+    <meta property="og:image" content="./assets/profile.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.28.0",
+        "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24"
+      }
+    }
+    </script>
+    <script type="module" src="https://aistudio.google.com/client/studio.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@300;400;700&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes stars {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-2000px); }
+        }
+        
+        @keyframes scroll-indicator {
+            0% { opacity: 0; transform: translateY(-10px); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(10px); }
+        }
+        
+        @keyframes subtle-breath {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        body {
+            background-color: #0d0d1a;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .stars-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2000px;
+            background-image: radial-gradient(1px 1px at 25px 5px, white, transparent),
+                              radial-gradient(1px 1px at 50px 25px, white, transparent),
+                              radial-gradient(1px 1px at 75px 80px, white, transparent),
+                              radial-gradient(1.5px 1.5px at 130px 45px, white, transparent),
+                              radial-gradient(1.5px 1.5px at 150px 120px, white, transparent),
+                              radial-gradient(1px 1px at 200px 180px, white, transparent),
+                              radial-gradient(2px 2px at 250px 90px, white, transparent);
+            animation: stars 120s linear infinite;
+        }
+
+        .stars-bg::after {
+            content: "";
+            position: absolute;
+            top: -2000px;
+            left: 0;
+            width: 100%;
+            height: 2000px;
+            background-image: radial-gradient(1px 1px at 25px 5px, white, transparent),
+                              radial-gradient(1px 1px at 50px 25px, white, transparent),
+                              radial-gradient(1px 1px at 75px 80px, white, transparent),
+                              radial-gradient(1.5px 1.5px at 130px 45px, white, transparent),
+                              radial-gradient(1.5px 1.5px at 150px 120px, white, transparent),
+                              radial-gradient(1px 1px at 200px 180px, white, transparent),
+                              radial-gradient(2px 2px at 250px 90px, white, transparent);
+        }
+
+        #root {
+            position: relative;
+            z-index: 1;
+            background: radial-gradient(ellipse at 50% -20%, rgba(120, 113, 222, 0.2), transparent 80%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d2d2d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4a4a4a;
+        }
+
+        /* Scrollbar Hide */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        /* Mobile Horizontal Scrollbar */
+        .mobile-scroll-x::-webkit-scrollbar {
+            display: none;
+        }
+        .mobile-scroll-x {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-scroll-x::-webkit-scrollbar {
+                height: 4px;
+                display: block;
+            }
+            .mobile-scroll-x::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            .mobile-scroll-x::-webkit-scrollbar-thumb {
+                background: rgba(253, 224, 71, 0.4);
+                border-radius: 2px;
+            }
+            .mobile-scroll-x {
+                -ms-overflow-style: auto;
+                scrollbar-width: thin;
+                scrollbar-color: rgba(253, 224, 71, 0.4) transparent;
+            }
+        }
+
+        /* Card Glow Effect */
+        .card-glow:hover {
+            box-shadow: 0 0 25px rgba(253, 224, 71, 0.2), 0 0 40px rgba(253, 224, 71, 0.15);
+        }
+        
+        .image-glow {
+            box-shadow: 0 0 40px rgba(253, 224, 71, 0.15), 0 0 60px rgba(253, 224, 71, 0.1), 0 0 80px rgba(120, 113, 222, 0.1);
+        }
+
+        /* Shimmer Button Effect */
+        .shimmer-button {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            animation: shimmer 4s infinite;
+        }
+        
+        .project-link a {
+            position: relative;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-link a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #FDE047;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .project-link:hover a::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Aesthetic Gallery Border */
+        .aesthetic-gallery-border {
+            background-color: #374151; /* A solid, neutral gray */
+        }
+
+        /* Aesthetic Border */
+        .fixed-border .line {
+            position: fixed;
+            background-color: rgba(253, 224, 71, 0.15);
+            z-index: 1000;
+        }
+        .fixed-border .top, .fixed-border .bottom { left: 0; width: 100%; height: 2px; }
+        .fixed-border .left, .fixed-border .right { top: 0; width: 2px; height: 100%; }
+        .fixed-border .top { top: 0; }
+        .fixed-border .bottom { bottom: 0; }
+        .fixed-border .left { left: 0; }
+        .fixed-border .right { right: 0; }
+
+        @media (max-width: 768px) {
+            .fixed-border {
+                display: none;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="text-gray-300 text-base">
+    <div class="stars">
+      <div class="stars-bg"></div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
