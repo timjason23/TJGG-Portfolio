@@ -39,7 +39,7 @@ export const GALLERY_IMAGES: GalleryImage[] = [
     },
      {
         // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/award-ceremony.jpg', // <-- TODO: UPDATE THIS FILENAME
+        src: './assets/SGLG.jpg', // <-- TODO: UPDATE THIS FILENAME
         caption: 'Award Ceremony',
         category: 'Awards and Recognitions'
     },
