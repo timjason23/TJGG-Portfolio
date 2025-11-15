@@ -32,96 +32,127 @@ export const PERSONAL_INFO: PersonalInfo = {
 
 export const GALLERY_IMAGES: GalleryImage[] = [
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/behind-the-scenes.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Behind the Scenes',
+        src: '/assets/akwe.jpg',
+        caption: 'CCS Provincial Council hosts College Aquaintance and Freshmen Orientation',
         category: 'Student Council'
     },
-     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/SGLG.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Award Ceremony',
-        category: 'Awards and Recognitions'
+    {
+        src: './assets/mental.jpg',
+        caption: 'CCS Provincial Council hosts Mental Health Seminar',
+        category: 'Student Council'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/networking-event.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Networking Event',
-        category: 'Events and Outreaches'
+        src: './assets/warriorspit1.jpg',
+        caption: 'CCS Provincial Council hosts Warriors Pit 2025',
+        category: 'Student Council'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/presenting-our-work.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Presenting Our Work',
+        src: './assets/leadership.jpg',
+        caption: 'CCS Provincial Council holds Leadership Training and Team Building Activity',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/inauguration.jpg',
+        caption: 'CCS Provincial Council Elected Officials Inauguration',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/studyhub.jpg',
+        caption: 'CCS Provincial Council Study Hub initiative for Midterm Exams',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/platform.jpg',
+        caption: 'CCS Provincial Council Platform Check and Accomplished Projects',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/welcome.jpg',
+        caption: 'CCS Provincial Council Welcomes New Academic Year',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/cipher1.jpg',
+        caption: 'CCS Provincial Council Welcomes New Academic Year',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/cipher2.jpg',
+        caption: 'CCS Provincial Council Welcomes New Academic Year',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/cipher3.jpg',
+        caption: 'CCS Provincial Council Welcomes New Academic Year',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/cipher4.jpg',
+        caption: 'CCS Provincial Council Welcomes New Academic Year',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/cipher5.jpg',
+        caption: 'CCS Provincial Council Welcomes New Academic Year',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/cipher6.jpg',
+        caption: 'CCS Provincial Council Welcomes New Academic Year',
+        category: 'Student Council'
+    },
+    {
+        src: './assets/dappli1.jpg',
+        caption: 'Dappli at Lightning Pitches at Visayas TECH PLANTER 2025',
         category: 'Startup Journey'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/startup-pitch.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Startup Pitch',
+        src: './assets/dappli.jpg',
+        caption: 'Dappli shines bright with Excellence and Apecs Awards',
         category: 'Startup Journey'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/celebrating-success.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Celebrating Success',
-        category: 'Awards and Recognitions'
-    },
-    {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/another-great-moment.jpg', // <-- TODO: UPDATE THIS FILENAME
+        src: './assets/outreach.jpg',
         caption: 'Another Great Moment',
-        category: 'Events and Outreaches'
+        category: 'Outreaches'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/team-collaboration.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Team Collaboration',
-        category: 'Student Council'
-    },
-    {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/project-presentation.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Project Presentation',
+        src: './assets/dappli2.jpg',
+        caption: 'Serves as the Chief Financial Officer of Dappli',
         category: 'Startup Journey'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/conference-day.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Conference Day',
-        category: 'Events and Outreaches'
+        src: '/assets/SGLG.jpg',
+        caption: 'Most Outstanding Board Member and Ministry (Finance)',
+        category: 'Awards and Recognition'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/team-achievement.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Team Achievement',
-        category: 'Awards and Recognitions'
+        src: '/assets/sigrab.jpg',
+        caption: '2025 Sigrab Film Festival - Best Film',
+        category: 'Awards and Recognition'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/official-event-photo.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Official Event Photo',
-        category: 'Events and Outreaches'
+        src: '/assets/sigrab1.jpg',
+        caption: '2025 Sigrab Film Festival - Best Film',
+        category: 'Awards and Recognition'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/team-gathering.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Team Gathering',
+        src: './assets/sigrabshoot.jpg',
+        caption: '2025 Sigrab Film Festival0 - Shoot',
         category: 'Student Council'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/award-night.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Award Night',
-        category: 'Awards and Recognitions'
+        src: '/assets/DAR.jpg',
+        caption: 'Regional DAR Pelikulagraryo 2025 Film Festival - Best Film',
+        category: 'Awards and Recognition'
     },
     {
-        // TODO: Add your image to the 'assets' folder and update the filename below.
-        src: './assets/brainstorming-session.jpg', // <-- TODO: UPDATE THIS FILENAME
-        caption: 'Brainstorming Session',
-        category: 'Student Council'
+        src: '/assets/DARnational.jpg',
+        caption: 'National DAR Pelikulagraryo 2025 Film Festival - Best Film',
+        category: 'Awards and Recognition'
     }
 ];
+
 
 export const EXPERIENCE: Experience[] = [
     {
