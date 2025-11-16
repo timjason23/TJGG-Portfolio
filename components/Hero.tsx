@@ -2,11 +2,10 @@ import React from 'react';
 import { motion, Variants, useMotionValue, useTransform } from 'framer-motion';
 import { PERSONAL_INFO } from '../constants';
 import AnimatedSection from './AnimatedSection';
-import { MailIcon, ChevronDownIcon } from './Icons';
+import { MailIcon, ChevronDownIcon, DownloadIcon } from './Icons';
 import BackgroundShapes from './BackgroundShapes';
 
 const Hero: React.FC = () => {
-    // 3D Tilt Effect Logic
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
     const rotateX = useTransform(mouseY, [-300, 300], [10, -10]);
@@ -22,53 +21,58 @@ const Hero: React.FC = () => {
         mouseX.set(0);
         mouseY.set(0);
     };
-    
+
     const handleScrollDown = () => {
         const aboutSection = document.getElementById('section-about');
-        if (aboutSection) {
-            aboutSection.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (aboutSection) aboutSection.scrollIntoView({ behavior: 'smooth' });
     };
 
     const containerVariants: Variants = {
-      hidden: { opacity: 0 },
-      visible: {
-        opacity: 1,
-        transition: {
-          staggerChildren: 0.2,
-          delayChildren: 0.3,
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.3,
+            },
         },
-      },
     };
-    
+
     const itemVariants: Variants = {
-      hidden: { opacity: 0, y: 30 },
-      visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 12 } },
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { type: 'spring', stiffness: 100, damping: 12 },
+        },
     };
-    
-    // Letter-by-letter animation
+
     const headlineText = "I build exceptional digital experiences.";
     const sentenceVariants: Variants = {
         hidden: { opacity: 1 },
         visible: {
             opacity: 1,
-            transition: {
-                delay: 0.5,
-                staggerChildren: 0.03, // Faster stagger
-            },
+            transition: { delay: 0.5, staggerChildren: 0.03 },
         },
     };
+
     const letterVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
     };
 
     return (
-        <AnimatedSection id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden">
+        <AnimatedSection
+            id="hero"
+            className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden"
+        >
             <BackgroundShapes />
+
             <div className="flex-grow flex items-center justify-center container mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="relative z-10 w-full">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center md:justify-center">
+
+                        {/* LEFT COLUMN TEXT */}
                         <motion.div
                             className="order-2 md:order-1 text-center md:text-left"
                             variants={containerVariants}
@@ -76,21 +80,23 @@ const Hero: React.FC = () => {
                             animate="visible"
                         >
                             <div className="space-y-4 md:space-y-5">
-                                <motion.h1 
+                                <motion.h1
                                     variants={itemVariants}
                                     className="font-poppins text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight"
                                 >
-                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500">{PERSONAL_INFO.name}</span>
+                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-500">
+                                        {PERSONAL_INFO.name}
+                                    </span>
                                 </motion.h1>
 
-                                <motion.p 
+                                <motion.p
                                     variants={itemVariants}
                                     className="text-base sm:text-lg md:text-xl text-gray-300 font-semibold"
                                 >
                                     {PERSONAL_INFO.title}
                                 </motion.p>
 
-                                <motion.h2 
+                                <motion.h2
                                     variants={sentenceVariants}
                                     initial="hidden"
                                     animate="visible"
@@ -103,33 +109,56 @@ const Hero: React.FC = () => {
                                     ))}
                                 </motion.h2>
 
-                                <motion.p 
+                                <motion.p
                                     variants={itemVariants}
                                     className="text-gray-400 max-w-xl text-sm sm:text-base leading-relaxed mx-auto md:mx-0"
                                 >
-                                    From {PERSONAL_INFO.location}, I transform ideas into responsive and performant web applications that engage users and drive results.
+                                    From {PERSONAL_INFO.location}, I transform ideas into responsive and
+                                    performant web applications that engage users and drive results.
                                 </motion.p>
                             </div>
-                            <motion.div 
+
+                            {/* BUTTONS */}
+                            <motion.div
                                 variants={itemVariants}
-                                className="mt-8 sm:mt-10 flex items-center justify-center md:justify-start"
+                                className="mt-8 sm:mt-10 flex items-center gap-4 justify-center md:justify-start"
                             >
+                                {/* GET IN TOUCH BUTTON */}
                                 <motion.a
                                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}&su=Inquiry%20from%20your%20Portfolio`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#161616] border border-yellow-400/60 text-gray-300 font-bold rounded-lg hover:border-yellow-400 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d1a] tracking-wider"
+                                    className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#161616] border border-yellow-400/60 text-gray-300 font-bold rounded-lg hover:border-yellow-400 transition-all duration-300 group focus:outline-none tracking-wider"
                                     whileHover={{ y: -4, scale: 1.05, boxShadow: '0 0 25px rgba(253, 224, 71, 0.2)' }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                                >
+                                    <MailIcon className="w-5 h-5 mr-3 text-yellow-400 transition-transform duration-300 group-hover:-rotate-12" />
+                                    Get In Touch
+                                </motion.a>
+
+                                {/* ⭐ YOUR NEW DOWNLOAD CV BUTTON ⭐ */}
+                                {/* 
+                                  NOTE: Create an 'assets' folder in the root directory 
+                                  and place your resume file named 'Tim_Jason_Gonzales_Resume.pdf' inside it.
+                                */}
+                                <motion.a
+                                    href="OATHTAKING.pdf"
+                                    download="OATHTAKING.pdf"
+                                    className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-transparent border border-gray-600 text-gray-300 font-bold rounded-lg hover:bg-yellow-400/10 hover:border-yellow-400 hover:text-yellow-300 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d1a] tracking-wider"
+                                    whileHover={{ y: -4, scale: 1.05, boxShadow: '0 0 25px rgba(253, 224, 71, 0.1)' }}
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
                                 >
-                                    <MailIcon className="w-5 h-5 mr-3 text-yellow-400 transition-transform duration-300 group-hover:-rotate-12" />
-                                    <span className="text-base md:text-lg bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-400 group-hover:from-yellow-300 group-hover:to-yellow-400 transition-all duration-300">
-                                        Get In Touch
+                                    <DownloadIcon className="w-5 h-5 mr-3 text-gray-400 transition-colors duration-300 group-hover:text-yellow-400" />
+                                    <span className="text-base md:text-lg">
+                                        Download CV
                                     </span>
                                 </motion.a>
                             </motion.div>
                         </motion.div>
+
+                        {/* RIGHT COLUMN IMAGE */}
                         <motion.div
                             className="order-1 md:order-2"
                             style={{ perspective: 1000 }}
@@ -139,21 +168,21 @@ const Hero: React.FC = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: 0.3, type: 'spring', stiffness: 80 }}
                         >
-                            <motion.div 
+                            <motion.div
                                 className="relative w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 mx-auto group"
-                                style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-                             >
+                                style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+                            >
                                 <motion.div
-                                  className="absolute inset-0 rounded-full border-2 border-dashed border-yellow-400/20"
-                                  style={{ animation: 'subtle-breath 4s ease-in-out infinite' }}
-                                  animate={{ rotate: 30 }}
-                                  transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+                                    className="absolute inset-0 rounded-full border-2 border-dashed border-yellow-400/20"
+                                    style={{ animation: 'subtle-breath 4s ease-in-out infinite' }}
+                                    animate={{ rotate: 30 }}
+                                    transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
                                 />
                                 <motion.div
-                                  className="absolute inset-2 rounded-full border-2 border-yellow-400/30"
-                                  style={{ animation: 'subtle-breath 4s ease-in-out infinite reverse' }}
-                                  animate={{ rotate: -30 }}
-                                  transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                                    className="absolute inset-2 rounded-full border-2 border-yellow-400/30"
+                                    style={{ animation: 'subtle-breath 4s ease-in-out infinite reverse' }}
+                                    animate={{ rotate: -30 }}
+                                    transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
                                 />
                                 <img
                                     src={PERSONAL_INFO.imageUrl}
@@ -163,20 +192,23 @@ const Hero: React.FC = () => {
                                 />
                             </motion.div>
                         </motion.div>
+
                     </div>
                 </div>
             </div>
+
+            {/* SCROLL DOWN BUTTON */}
             <div className="w-full text-center pb-4">
-              <button
-                  onClick={handleScrollDown}
-                  className="p-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 rounded-full inline-block"
-                  aria-label="Scroll to next section"
-              >
-                  <ChevronDownIcon 
-                    className="w-8 h-8 text-gray-600 hover:text-yellow-400 transition-colors"
-                    style={{ animation: 'scroll-indicator 2s infinite' }} 
-                  />
-              </button>
+                <button
+                    onClick={handleScrollDown}
+                    className="p-2 focus:outline-none rounded-full inline-block"
+                    aria-label="Scroll to next section"
+                >
+                    <ChevronDownIcon
+                        className="w-8 h-8 text-gray-600 hover:text-yellow-400 transition-colors"
+                        style={{ animation: 'scroll-indicator 2s infinite' }}
+                    />
+                </button>
             </div>
         </AnimatedSection>
     );
