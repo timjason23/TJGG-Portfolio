@@ -27,7 +27,7 @@ export const PERSONAL_INFO: PersonalInfo = {
     // TODO: Create an 'assets' folder in your project's root directory.
     // TODO: Add your profile picture to the 'assets' folder.
     // TODO: Replace 'profile.jpg' with the actual filename of your profile picture.
-    imageUrl: './assets/profile.jpg', // <-- TODO: UPDATE THIS FILENAME
+    imageUrl: './assets/profilevg.jpg', // <-- TODO: UPDATE THIS FILENAME
 };
 
 export const GALLERY_IMAGES: GalleryImage[] = [

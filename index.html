@@ -194,29 +194,31 @@
             animation: shimmer 4s infinite;
         }
         
-        .project-link a {
-            position: relative;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+       /* Navigation Link Underline Animation */
+.project-link {
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding-bottom: 6px;
+}
 
-        .project-link a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: #FDE047;
-            transform-origin: bottom right;
-            transition: transform 0.25s ease-out;
-        }
+.project-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0); /* Initially, the line has 0 width */
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to right, #FDE047, #FBBF24);
+    border-radius: 1px;
+    transform-origin: center; /* This makes the animation start from the center */
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); /* Defines the smooth animation */
+}
 
-        .project-link:hover a::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
+.project-link:hover::after {
+    transform: scaleX(1); /* On hover, the line scales to its full width */
+}
 
         /* Aesthetic Gallery Border */
         .aesthetic-gallery-border {
