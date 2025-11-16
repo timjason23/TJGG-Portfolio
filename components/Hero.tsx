@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
                             {/* BUTTONS */}
                             <motion.div
                                 variants={itemVariants}
-                                className="mt-8 sm:mt-10 flex items-center gap-4 justify-center md:justify-start"
+    className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4"
                             >
                                 {/* GET IN TOUCH BUTTON */}
                                 <motion.a
