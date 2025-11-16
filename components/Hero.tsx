@@ -6,6 +6,7 @@ import { MailIcon, ChevronDownIcon, DownloadIcon } from './Icons';
 import BackgroundShapes from './BackgroundShapes';
 
 const Hero: React.FC = () => {
+    // 3D Tilt Effect
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
     const rotateX = useTransform(mouseY, [-300, 300], [10, -10]);
@@ -16,46 +17,27 @@ const Hero: React.FC = () => {
         mouseX.set(e.clientX - rect.left - rect.width / 2);
         mouseY.set(e.clientY - rect.top - rect.height / 2);
     };
-
-    const handleMouseLeave = () => {
-        mouseX.set(0);
-        mouseY.set(0);
-    };
+    const handleMouseLeave = () => { mouseX.set(0); mouseY.set(0); };
 
     const handleScrollDown = () => {
         const aboutSection = document.getElementById('section-about');
         if (aboutSection) aboutSection.scrollIntoView({ behavior: 'smooth' });
     };
 
+    // Framer Motion Variants
     const containerVariants: Variants = {
         hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.3,
-            },
-        },
+        visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.3 } },
     };
-
     const itemVariants: Variants = {
         hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { type: 'spring', stiffness: 100, damping: 12 },
-        },
+        visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 12 } },
     };
-
     const headlineText = "I build exceptional digital experiences.";
     const sentenceVariants: Variants = {
         hidden: { opacity: 1 },
-        visible: {
-            opacity: 1,
-            transition: { delay: 0.5, staggerChildren: 0.03 },
-        },
+        visible: { opacity: 1, transition: { delay: 0.5, staggerChildren: 0.03 } },
     };
-
     const letterVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
@@ -72,7 +54,7 @@ const Hero: React.FC = () => {
                 <div className="relative z-10 w-full">
                     <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center md:justify-center">
 
-                        {/* LEFT COLUMN TEXT */}
+                        {/* LEFT COLUMN */}
                         <motion.div
                             className="order-2 md:order-1 text-center md:text-left"
                             variants={containerVariants}
@@ -80,6 +62,8 @@ const Hero: React.FC = () => {
                             animate="visible"
                         >
                             <div className="space-y-4 md:space-y-5">
+
+                                {/* Name */}
                                 <motion.h1
                                     variants={itemVariants}
                                     className="font-poppins text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight"
@@ -89,6 +73,7 @@ const Hero: React.FC = () => {
                                     </span>
                                 </motion.h1>
 
+                                {/* Title */}
                                 <motion.p
                                     variants={itemVariants}
                                     className="text-base sm:text-lg md:text-xl text-gray-300 font-semibold"
@@ -96,19 +81,21 @@ const Hero: React.FC = () => {
                                     {PERSONAL_INFO.title}
                                 </motion.p>
 
+                                {/* Headline */}
                                 <motion.h2
                                     variants={sentenceVariants}
                                     initial="hidden"
                                     animate="visible"
                                     className="font-poppins text-2xl sm:text-3xl md:text-4xl font-bold text-gray-200 tracking-tight"
                                 >
-                                    {headlineText.split("").map((char, index) => (
-                                        <motion.span key={char + "-" + index} variants={letterVariants}>
+                                    {headlineText.split("").map((char, i) => (
+                                        <motion.span key={char + "-" + i} variants={letterVariants}>
                                             {char}
                                         </motion.span>
                                     ))}
                                 </motion.h2>
 
+                                {/* Description */}
                                 <motion.p
                                     variants={itemVariants}
                                     className="text-gray-400 max-w-xl text-sm sm:text-base leading-relaxed mx-auto md:mx-0"
@@ -128,33 +115,36 @@ const Hero: React.FC = () => {
                                     href={`https://mail.google.com/mail/?view=cm&fs=1&to=${PERSONAL_INFO.email}&su=Inquiry%20from%20your%20Portfolio`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-[#161616] border border-yellow-400/60 text-gray-300 font-bold rounded-lg hover:border-yellow-400 transition-all duration-300 group focus:outline-none tracking-wider"
-                                    whileHover={{ y: -4, scale: 1.05, boxShadow: '0 0 25px rgba(253, 224, 71, 0.2)' }}
+                                    className="w-full sm:w-36 inline-flex items-center justify-center px-3 py-1.5 bg-[#161616] border border-yellow-400/60 text-gray-300 font-bold rounded-lg hover:border-yellow-400 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d1a] tracking-wider"
+                                    whileHover={{ y: -4, scale: 1.05, boxShadow: '0 0 25px rgba(253,224,71,0.1)' }}
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ type: 'spring', stiffness: 400, damping: 15 }}
                                 >
-                                    <MailIcon className="w-5 h-5 mr-3 text-yellow-400 transition-transform duration-300 group-hover:-rotate-12" />
-                                    Get In Touch
-                                </motion.a>
-
-                                {/* ⭐ YOUR NEW DOWNLOAD CV BUTTON ⭐ */}
-                                {/* 
-                                  NOTE: Create an 'assets' folder in the root directory 
-                                  and place your resume file named 'Tim_Jason_Gonzales_Resume.pdf' inside it.
-                                */}
-                                <motion.a
-                                    href="OATHTAKING.pdf"
-                                    download="OATHTAKING.pdf"
-                                    className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 bg-transparent border border-gray-600 text-gray-300 font-bold rounded-lg hover:bg-yellow-400/10 hover:border-yellow-400 hover:text-yellow-300 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d1a] tracking-wider"
-                                    whileHover={{ y: -4, scale: 1.05, boxShadow: '0 0 25px rgba(253, 224, 71, 0.1)' }}
-                                    whileTap={{ scale: 0.95 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                                >
-                                    <DownloadIcon className="w-5 h-5 mr-3 text-gray-400 transition-colors duration-300 group-hover:text-yellow-400" />
-                                    <span className="text-base md:text-lg">
-                                        Download CV
+                                    <MailIcon className="w-4 h-4 mr-1.5 text-yellow-400 transition-transform duration-300 group-hover:-rotate-12" />
+                                    <span className="text-xs bg-clip-text text-transparent bg-gradient-to-r from-gray-200 to-gray-400 group-hover:from-yellow-300 group-hover:to-yellow-400 transition-all duration-300">
+                                        Get In Touch
                                     </span>
                                 </motion.a>
+
+                                {/* VIEW & DOWNLOAD PDF BUTTONS */}
+                                <div className="flex gap-2">
+
+                                    {/* Open PDF */}
+                                    <motion.a
+                                        href="/OATHTAKING.pdf"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full sm:w-36 inline-flex items-center justify-center px-3 py-1.5 bg-transparent border border-gray-600 text-gray-300 font-bold rounded-lg hover:bg-yellow-400/10 hover:border-yellow-400 hover:text-yellow-300 transition-all duration-300 group"
+                                        whileHover={{ y: -4, scale: 1.05, boxShadow: '0 0 25px rgba(253,224,71,0.1)' }}
+                                        whileTap={{ scale: 0.95 }}
+                                        transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                                    >
+                                        <DownloadIcon className="w-4 h-4 mr-1.5 text-gray-400 group-hover:text-yellow-400 duration-300" />
+                                        <span className="text-xs">View CV</span>
+                                    </motion.a>
+
+
+                                </div>
                             </motion.div>
                         </motion.div>
 
@@ -197,7 +187,7 @@ const Hero: React.FC = () => {
                 </div>
             </div>
 
-            {/* SCROLL DOWN BUTTON */}
+            {/* SCROLL DOWN */}
             <div className="w-full text-center pb-4">
                 <button
                     onClick={handleScrollDown}
